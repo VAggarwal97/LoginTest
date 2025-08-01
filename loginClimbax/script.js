@@ -1,5 +1,3 @@
-// script.js
-
 // Simulated "database" of credentials
 const users = {
   "test@example.com": "Test1234!",
@@ -12,10 +10,19 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
   const message = document.getElementById("message");
+  message.style.color = "red"; // default color for errors
 
-  // Basic validation
-  if (!email || !password) {
+  // Specific field checks
+  if (!email && !password) {
     message.textContent = "Both fields are required";
+    return;
+  }
+  if (!email) {
+    message.textContent = "Email is required";
+    return;
+  }
+  if (!password) {
+    message.textContent = "Password is required";
     return;
   }
 
@@ -31,10 +38,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     message.style.color = "green";
     message.textContent = "Login successful! Redirecting...";
     setTimeout(() => {
-      window.location.href = "dashboard.html"; // Simulated redirection
+      window.location.href = "dashboard.html";
     }, 1500);
   } else {
-    message.style.color = "red";
     message.textContent = "Invalid email or password";
   }
 });
