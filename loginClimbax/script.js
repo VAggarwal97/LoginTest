@@ -12,17 +12,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   const message = document.getElementById("message");
   message.style.color = "red"; // default color for errors
 
-  // Specific field checks
-  if (!email && !password) {
+  // Match requirement: if either field is empty, say "Both fields are required"
+  if (!email || !password) {
     message.textContent = "Both fields are required";
-    return;
-  }
-  if (!email) {
-    message.textContent = "Email is required";
-    return;
-  }
-  if (!password) {
-    message.textContent = "Password is required";
     return;
   }
 
